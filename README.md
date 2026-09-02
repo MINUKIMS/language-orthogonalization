@@ -39,7 +39,7 @@ speaker_id, lang, cohort, group, age, gender, has_metadata, fold
 
 `fold ∈ {0,…,4}` is a per-language stratified split over the HC pool.
 
-The language-nuisance embedding is expected at
+The LID embedding is expected at
 `$LOPD_FEAT_ROOT/voxlingua_lid/` in the same format (SpeechBrain's
 VoxLingua107 ECAPA-CNN, 256-d).  Any per-utterance language embedding
 of comparable capacity is a drop-in replacement.
@@ -74,7 +74,7 @@ Each script writes a tidy CSV under `$LOPD_OUT_DIR/`.
 Given per-utterance layer-wise S3M embeddings `E ∈ ℝ^(L×N×D)`, each
 `(N,D)` layer is L2-normalized and the uniform layer mean produces
 `X ∈ ℝ^(N×D)`.  Speaker features are the within-speaker mean of `X`
-for a given task.  The nuisance embedding `G` is the speaker mean of a
+for a given task.  The LID embedding `G` is the speaker mean of a
 VoxLingua107 LID model, standardized on the training-fold HC pool.
 LO fits `W = Ridge(α).fit(G_HC, X_HC)` on healthy speakers only and
 returns `X_clean = X − G · Wᵀ`; the same `W` is applied to PD.  On
