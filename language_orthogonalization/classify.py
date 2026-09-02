@@ -19,7 +19,7 @@ def lr_fit_predict(X_tr, y_tr, X_te):
 
 
 def lr_inner_oof(X, y, seed: int = 0):
-    """5-fold stratified OOF LLR scores on the training set — used to
+    """5-fold stratified OOF LLR scores on the training set, used to
     pick a threshold at a given target sensitivity without touching the
     held-out target evaluation set."""
     skf = StratifiedKFold(INNER_K, shuffle=True, random_state=seed)

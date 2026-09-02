@@ -1,4 +1,4 @@
-"""Cross-lingual transfer protocol (source → target) — see README."""
+"""Cross-lingual transfer protocol (source to target). See README."""
 from __future__ import annotations
 from typing import Iterable
 

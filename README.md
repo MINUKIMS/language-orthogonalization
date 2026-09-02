@@ -1,44 +1,36 @@
 # Language Orthogonalization of Self-Supervised Speech Representations for Cross-lingual Parkinson's Detection
 
-Reference implementation of language orthogonalization (LO) and the
-cross-lingual PD-detection protocol used in the paper.  The scope of
-this repository is:
+Reference implementation of language orthogonalization (LO) for
+cross-lingual Parkinson's detection. Covers S3M feature pooling, the
+LO transform (HC-only ridge residualization against a VoxLingua107 LID
+embedding), the LS baseline from Hernández et al. 2024, and the
+source-to-target evaluation protocol used in the paper.
 
-* layer pooling of self-supervised speech-model (S3M) features,
-* the LO transform — HC-only ridge residualization of S3M features
-  against a VoxLingua107 language-identification embedding,
-* the language-shift (LS) baseline of Hernández et al. 2024, included
-  for reproducibility of the paper's comparison tables,
-* the source-to-target cross-lingual evaluation protocol
-  (train: source-language HC + PD plus target HC train fold;
-   evaluate: target HC test fold + target PD).
-
-Feature-extraction pipelines, figure code, and ablations are omitted;
-bring your own per-utterance S3M layer stack and a per-utterance
-VoxLingua107 LID embedding.
+Feature extraction and figure code are not included. Bring your own
+per-utterance S3M layer stack and VoxLingua107 LID embeddings.
 
 ## Layout
 
 ```
 language_orthogonalization/
-├── config.py         # paths (via env vars), backbone list, α / sens grids
-├── pooling.py        # load_features, speaker_pool
-├── methods.py        # lid_residualize (LO), apply_ls (Hernández baseline)
-├── classify.py       # LR train/predict, inner-OOF thresholding, metrics
-├── protocol.py       # cross-lingual folds + representation builder
-├── run_sens_curve.py # sens-target × α sweep
-└── run_lid_check.py  # LID-classification sanity check
+├── config.py         # paths, backbone list, sweep grids
+├── pooling.py        # feature loading, speaker pooling
+├── methods.py        # LO and LS transforms
+├── classify.py       # classifier and threshold utilities
+├── protocol.py       # cross-lingual folds and evaluation
+├── run_sens_curve.py # main experiment
+└── run_lid_check.py  # LID classification check
 ```
 
 ## Data layout expected
 
 Each backbone lives under `$LOPD_FEAT_ROOT/<backbone>/`:
 
-* `embeddings.npy` — array of shape `(L, N, D)` for layer-wise S3M
+* `embeddings.npy`: array of shape `(L, N, D)` for layer-wise S3M
   backbones (per-layer L2-normalized frame means; the loader applies
   the uniform layer mean), or `(N, D)` for utterance-level backbones
   such as ECAPA-TDNN.
-* `index.csv` — one row per utterance with columns
+* `index.csv`: one row per utterance with columns
   `speaker_id, lang, cohort, group, task` (rows aligned to
   `embeddings.npy` axis `N`).
 
@@ -68,13 +60,13 @@ LOPD_OUT_DIR     # default: ./results
 ```bash
 pip install -r language_orthogonalization/requirements.txt
 
-# Main experiment — 5 S3M backbones × 3 tasks × 3 targets × 5 folds
+# Main experiment: 5 S3M backbones x 3 tasks x 3 targets x 5 folds
 python -m language_orthogonalization.run_sens_curve
 
 # Non-S3M controls (ECAPA-TDNN / Whisper-Large / AST)
 python -m language_orthogonalization.run_sens_curve --nonssl
 
-# LID-classification sanity check (does LO suppress language cues?)
+# Check whether LO removes language information from the features
 python -m language_orthogonalization.run_lid_check --per-task
 ```
 
@@ -93,9 +85,3 @@ each held-out target-language HC fold a class-balanced logistic
 regression is trained on all source-language speakers plus the target
 HC training slice, and (sens, spec, F1) are evaluated on the target
 HC test fold together with all target PD.
-
-## Notes
-
-* Ridge with `α = 0` is clamped to `1e-8` for numerical stability;
-  the fit is under-determined whenever the HC training set is smaller
-  than the LID embedding dimension.

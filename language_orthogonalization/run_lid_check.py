@@ -1,5 +1,5 @@
-"""LID-classification sanity check: does LO make language harder to
-recover from speaker-pooled features? See README for usage."""
+"""Checks whether LO makes language harder to recover from
+speaker-pooled features. See README for usage."""
 from __future__ import annotations
 import argparse
 import warnings

@@ -1,5 +1,5 @@
 """Language-nuisance removal: LO (this paper) and the LS baseline
-(Hernández et al. 2024) — see README for the method summary."""
+(Hernández et al. 2024). See README for the method summary."""
 from __future__ import annotations
 import numpy as np
 from sklearn.linear_model import Ridge
