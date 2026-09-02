@@ -6,9 +6,6 @@ LO transform (HC-only ridge residualization against a VoxLingua107 LID
 embedding), the LS baseline from Hernández et al. 2024, and the
 source-to-target evaluation protocol used in the paper.
 
-Feature extraction and figure code are not included. Bring your own
-per-utterance S3M layer stack and VoxLingua107 LID embeddings.
-
 ## Layout
 
 ```
@@ -83,5 +80,5 @@ LO fits `W = Ridge(α).fit(G_HC, X_HC)` on healthy speakers only and
 returns `X_clean = X − G · Wᵀ`; the same `W` is applied to PD.  On
 each held-out target-language HC fold a class-balanced logistic
 regression is trained on all source-language speakers plus the target
-HC training slice, and (sens, spec, F1) are evaluated on the target
+HC training fold, and (sens, spec, F1) are evaluated on the target
 HC test fold together with all target PD.
