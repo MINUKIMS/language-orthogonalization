@@ -1,5 +1,7 @@
 # Language Orthogonalization of Self-Supervised Speech Representations for Cross-lingual Parkinson's Detection
 
+Minu Kim et al. Submitted to IEEE SLT 2026.
+
 Reference implementation of language orthogonalization (LO) for
 cross-lingual Parkinson's detection. Covers S3M feature pooling, the
 LO transform (HC-only ridge residualization against a VoxLingua107 LID
