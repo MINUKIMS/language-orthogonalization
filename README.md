@@ -1,6 +1,6 @@
 # Language Orthogonalization of Self-Supervised Speech Representations for Cross-lingual Parkinson's Detection
 
-Minu Kim et al. IEEE SLT 2026. **[Paper](https://arxiv.org/abs/2609.09499)**
+Minu Kim, Eunjung Yeo, Kwanghee Choi, June-Woo Kim. IEEE SLT 2026. **[Paper](https://arxiv.org/abs/2609.09499)**
 
 Official implementation of language orthogonalization (LO) for cross-lingual Parkinson's detection. The repository includes S3M feature extraction and pooling, the proposed LO method, the language shift (LS) baseline from Hernández et al. (2024), and the evaluation protocol used in the paper.
 
