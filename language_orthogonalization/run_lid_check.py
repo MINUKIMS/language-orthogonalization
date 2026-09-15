@@ -1,5 +1,5 @@
 """Checks whether LO makes language harder to recover from
-speaker-pooled features. See README for usage."""
+speaker-pooled features."""
 from __future__ import annotations
 import argparse
 import warnings
