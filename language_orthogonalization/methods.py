@@ -1,5 +1,4 @@
-"""LO (this paper) and the LS baseline (Hernández et al. 2024).
-See README for the method summary."""
+"""LO and the LS baseline (Hernández et al. 2024)."""
 from __future__ import annotations
 import numpy as np
 from sklearn.linear_model import Ridge
