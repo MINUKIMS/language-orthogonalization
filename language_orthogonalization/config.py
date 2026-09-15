@@ -1,4 +1,4 @@
-"""Paths (via env vars, see README), backbone list, and sweep grids."""
+"""Paths, backbone list, and sweep grids."""
 from __future__ import annotations
 import os
 from pathlib import Path
