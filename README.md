@@ -34,12 +34,6 @@ $LOPD_FEAT_ROOT/<backbone>/
 speaker_id, lang, cohort, group, task
 ```
 
-The five-fold speaker split is stored at `$LOPD_SPLIT_PATH`, with columns:
-
-```text
-speaker_id, lang, cohort, group, age, gender, has_metadata, fold
-```
-
 VoxLingua107 LID embeddings should be placed under `$LOPD_FEAT_ROOT/voxlingua_lid/` in the same format.
 
 ## Usage
