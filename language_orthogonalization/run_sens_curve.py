@@ -1,5 +1,4 @@
-"""Main experiment: sens-target curve across raw / +LS / +LO(α).
-See README for usage."""
+"""Main experiment: sens-target curve across raw / +LS / +LO(α)."""
 from __future__ import annotations
 import argparse
 
