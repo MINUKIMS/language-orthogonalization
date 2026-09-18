@@ -64,3 +64,16 @@ LOPD_OUT_DIR=./results
 ```
 
 Results are saved under `$LOPD_OUT_DIR`.
+
+## Citation
+
+If you find this repository or our method useful, please cite our papers using the following BibTeX entries:
+
+```bibtex
+@article{kim2026parkinson,
+  title={Language Orthogonalization of Self-Supervised Speech Representations for Cross-lingual Parkinson's Detection},
+  author={Kim, Minu and Yeo, Eunjung and Choi, Kwanghee and Kim, June-Woo},
+  journal={arXiv preprint arXiv:2609.09499},
+  year={2026}
+}
+```
